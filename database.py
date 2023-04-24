@@ -58,13 +58,51 @@ def main():
                                     REFERENCES light (lightId)
                                 );"""
 
+    sql_create_soundeffect_table = """CREATE TABLE IF NOT EXISTS soundeffect (
+                                       soundeffectId integer PRIMARY KEY,
+                                       name text NOT NULL,
+                                       soundeffectFilePath text NOT NULL
+                                   );"""
+
+    sql_create_soundeffectBook_table = """CREATE TABLE IF NOT EXISTS soudeffectBook (
+                                        bookId integer NOT NULL,
+                                        soundeffectId integer NOT NULL,
+                                        soundeffectTiming integer NOT NULL,
+                                        FOREIGN KEY (bookId)
+                                        REFERENCES book(bookId)
+                                        FOREIGN KEY (soundeffectId)
+                                        REFERENCES soundeffect (soundeffectId)
+                                    );"""
+
+    sql_create_image_table = """CREATE TABLE IF NOT EXISTS image (
+                                          imageId integer PRIMARY KEY,
+                                          name text NOT NULL,
+                                          imageFilePath text NOT NULL
+                                      );"""
+
+    sql_create_imageBook_table = """CREATE TABLE IF NOT EXISTS imageBook (
+                                            bookId integer NOT NULL,
+                                            imageId integer NOT NULL,
+                                            imageTiming integer NOT NULL,
+                                            FOREIGN KEY (bookId)
+                                            REFERENCES book(bookId)
+                                            FOREIGN KEY (imageId)
+                                            REFERENCES soundeffect (imageId)
+                                        );"""
+
     # create a database connection
     conn = create_connection(database)
 
     # create tables
     if conn is not None:
         create_table(conn, sql_create_book_table)
-        create_table(conn, sql_create_tasks_table)
+        create_table(conn, sql_create_light_table)
+        create_table(conn, sql_create_lightBook_table)
+        create_table(conn, sql_create_soundeffect_table)
+        create_table(conn, sql_create_soundeffectBook_table)
+        create_table(conn, sql_create_image_table)
+        create_table(conn, sql_create_imageBook_table)
+
     else:
         print("Error! cannot create the database connection.")
 
