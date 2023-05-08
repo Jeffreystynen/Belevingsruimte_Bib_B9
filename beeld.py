@@ -3,14 +3,15 @@ from PIL import Image,ImageTk
 import glob
 import sqlite3
 
-folder_list = []
-connection = sqlite3.connect('location') #sql bestand invoeren
-cursor = connection.cursor()
-cursor.execute("SELECT imageFilePath FROM image WHERE ")
-results = cursor.fetchall()
-# alle folders worden in een lijst gezet
-for folder in results:
-	folder_list.append(folder)
+def selectbook(bookid):
+	folder_list = []
+	connection = sqlite3.connect('Image') #sql bestand invoeren
+	cursor = connection.cursor()
+	cursor.execute("SELECT Path FROM image WHERE bookid = " + bookid)
+	results = cursor.fetchall()
+	# alle folders worden in een lijst gezet
+	for folder in results:
+		folder_list.append(folder)
 
 bookname = "test"
 
