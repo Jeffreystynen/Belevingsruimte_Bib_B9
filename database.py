@@ -34,6 +34,7 @@ def create_table(conn, create_table_sql):
 def main():
     # database = r"pathname
     database = r""
+    create_table("PRAGMA foreign_keys = ON;")
 
     sql_create_book_table = """ CREATE TABLE IF NOT EXISTS book (
                                         bookId integer PRIMARY KEY,
