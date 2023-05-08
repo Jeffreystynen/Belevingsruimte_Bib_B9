@@ -1,5 +1,5 @@
 import database
-import slideshow
+import beeld
 import threading
 
 database.create_connection("filename")
