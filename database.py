@@ -84,7 +84,7 @@ def main():
                                             bookId integer NOT NULL,
                                             imageId integer NOT NULL,
                                             imageTiming integer NOT NULL,
-                                            order integer NOT NULL,
+                                            orderImage integer NOT NULL,
                                             FOREIGN KEY (bookId)
                                             REFERENCES book(bookId)
                                             FOREIGN KEY (imageId)
