@@ -10,7 +10,7 @@ cursor.execute("SELECT imageFilePath FROM image WHERE ")
 results = cursor.fetchall()
 # alle folders worden in een lijst gezet
 for folder in results:
-folder_list.append(folder)
+	folder_list.append(folder)
 
 bookname = "test"
 
