@@ -1,11 +1,10 @@
-# import required modules
 import tkinter as tk
 from PIL import Image,ImageTk
 import glob
 import sqlite3
 
 folder_list = []
-connection = sqlite3.connect('location')
+connection = sqlite3.connect('location') #sql bestand invoeren
 cursor = connection.cursor()
 cursor.execute("SELECT imageFilePath FROM image")
 results = cursor.fetchall()
@@ -39,7 +38,7 @@ class gui:
 	def pic(self):
 
 		self.pic_list = []
-		for name in glob.glob(r'../../Slideshow/*'):  # folder ingeven waarvan je een slideshow wilt afspelen
+		for name in glob.glob(r'Slideshow/*'):  # folder ingeven waarvan je een slideshow wilt afspelen met ster na / voor alle bestanden
 			val = name
 			self.pic_list.append(val)
 
