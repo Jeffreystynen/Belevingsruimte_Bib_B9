@@ -89,7 +89,7 @@ def main():
                                             FOREIGN KEY (bookId)
                                             REFERENCES book(bookId)
                                             FOREIGN KEY (imageId)
-                                            REFERENCES soundeffect (imageId)
+                                            REFERENCES image (imageId)
                                         );"""
 
     # create a database connection
