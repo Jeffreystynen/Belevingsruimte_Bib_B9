@@ -53,6 +53,7 @@ def main():
                                     bookId integer NOT NULL,
                                     lightId integer NOT NULL,
                                     lightTiming integer NOT NULL,
+                                    orderLight integer NOT NULL,
                                     FOREIGN KEY (bookId)
                                     REFERENCES book(bookId)
                                     FOREIGN KEY (lightId)
@@ -69,6 +70,7 @@ def main():
                                         bookId integer NOT NULL,
                                         soundeffectId integer NOT NULL,
                                         soundeffectTiming integer NOT NULL,
+                                        orderSoundeffect integer NOT NULL,
                                         FOREIGN KEY (bookId)
                                         REFERENCES book(bookId)
                                         FOREIGN KEY (soundeffectId)
