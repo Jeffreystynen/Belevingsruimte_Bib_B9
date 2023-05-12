@@ -3,22 +3,25 @@ from PIL import Image,ImageTk
 import glob
 import sqlite3
 
-folder_list = []
-connection = sqlite3.connect('location') #sql bestand invoeren
-cursor = connection.cursor()
-cursor.execute("SELECT imageFilePath FROM image")
-results = cursor.fetchall()
-# alle folders worden in een lijst gezet
-for folder in results:
-	folder_list.append(folder)
+def selectbook(bookid):
+	folder_list = []
+	connection = sqlite3.connect('Image') #sql bestand invoeren
+	cursor = connection.cursor()
+	cursor.execute("SELECT Path FROM image WHERE bookid = " + bookid)
+	results = cursor.fetchall()
+	# alle folders worden in een lijst gezet
+	for folder in results:
+		folder_list.append(folder)
+
+bookname = "test"
 
 
 
 class gui:
-	def __init__(self, mainwin):
+	def __init__(self, mainwin, bookname):
 		self.counter = 0
 		self.mainwin = mainwin
-		self.mainwin.title('Tkinter Picture Frame')
+		self.mainwin.title(bookname)
 		self.mainwin.state('zoomed')
 
 		self.mainwin.configure(bg='black')
