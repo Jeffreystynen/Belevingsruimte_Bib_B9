@@ -8,7 +8,7 @@ path_list = [""]
 
 def selectTiming(bookid):
 	global timing_list
-	connection = sqlite3.connect('book')  # sql bestand invoeren
+	connection = sqlite3.connect('belevings_ruimte.db')  # sql bestand invoeren
 	cursor = connection.cursor()
 	cursor.execute("SELECT i.imageTiming " +
 				   "FROM ImageBook ib" +
