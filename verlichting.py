@@ -6,7 +6,7 @@ import sqlite3
 pixels1 = neopixel.NeoPixel(board.D18, 55, brightness=1)
 
 book_id = int(input("Id of the book: "))
-conn = sqlite3.connect('db_file')
+conn = sqlite3.connect('belevings_ruimte.db')
 
 to_execute_sql_command = conn.cursor()
 
