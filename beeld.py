@@ -2,11 +2,38 @@ import tkinter as tk
 from PIL import Image, ImageTk
 import sqlite3
 
-timing_list = [2000, 5000,4000,5000]
-path_list = ['C:/Users/ewoud/Proofofconcept/Belevingsruimte_Bib_B9/Test/download.jpg', 'C:/Users/ewoud/Proofofconcept/Belevingsruimte_Bib_B9/Test/1.png', 'C:/Users/ewoud/Proofofconcept/Belevingsruimte_Bib_B9/Test/2.jpg', 'C:/Users/ewoud/Proofofconcept/Belevingsruimte_Bib_B9/Test/3.png']
+timing_list = [2000]
+path_list = [""]
 
 
+def selectTiming(bookid):
+	global timing_list
+	connection = sqlite3.connect('book')  # sql bestand invoeren
+	cursor = connection.cursor()
+	cursor.execute("SELECT i.imageTiming " +
+				   "FROM ImageBook ib" +
+				   "JOIN image i on i.imageID = ib.imageID " +
+				   "WHERE ib.bookID = " + bookid +
+				   "ORDER BY ib.OrderImage ASC")
+	results = cursor.fetchall()
+	# alle folders worden in een lijst gezet
+	for timing in results:
+		timing_list.append(timing)
 
+def selectPath(bookid):
+	global path_list
+	connection = sqlite3.connect('book') #sql bestand invoeren
+	cursor = connection.cursor()
+	cursor.execute("SELECT i.imageFilePath " +
+				   "FROM ImageBook ib" +
+				   "JOIN image i on i.imageID = ib.imageID " +
+				   "WHERE ib.bookID = " + bookid +
+				   "ORDER BY ib.OrderImage ASC")
+	results = cursor.fetchall()
+	# alle folders worden in een lijst gezet
+	for path in results:
+		path_list.append(path)
+	selectTiming(bookid)
 
 
 class gui:
