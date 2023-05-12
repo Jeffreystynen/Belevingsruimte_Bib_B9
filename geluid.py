@@ -1,17 +1,19 @@
-import pathlib 
-import os
 import pygame
 
-inputdirectory = "/home/dyn/ps1/Belevingsruimte_Bib_B9/Test/music.wav"
+input_file = "/home/dyn/ps1/Belevingsruimte_Bib_B9/Test/music.wav"
 
 pygame.init()
-pygame.mixer.music.load(inputdirectory)
+pygame.mixer.init()
+pygame.mixer.music.load(input_file)
 
 while True:
-    n= input("play, pause, stop")
-    if n=="play":
+    n = input("Enter 'play' to start, 'pause' to pause, or 'exit' to quit: ")
+    if n == "play":
         pygame.mixer.music.play()
-    elif n=="pause":
+    elif n == "pause":
         pygame.mixer.music.pause()
-    elif n=="exit":
-        exit()
+    elif n == "exit":
+        pygame.mixer.music.stop()
+        break
+
+pygame.quit()

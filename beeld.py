@@ -5,6 +5,7 @@ import sqlite3
 timing_list = [2000]
 path_list = [""]
 
+""" 
 
 def selectTiming(bookid):
 	global timing_list
@@ -33,8 +34,7 @@ def selectPath(bookid):
 	# alle folders worden in een lijst gezet
 	for path in results:
 		path_list.append(path)
-	selectTiming(bookid)
-
+	selectTiming(bookid) """
 
 class gui:
 	def __init__(self, mainwin, bookname):
