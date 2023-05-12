@@ -1,19 +1,11 @@
 import tkinter as tk
-from PIL import Image,ImageTk
-import glob
+from PIL import Image, ImageTk
 import sqlite3
 
-def selectbook(bookid):
-	folder_list = []
-	connection = sqlite3.connect('Image') #sql bestand invoeren
-	cursor = connection.cursor()
-	cursor.execute("SELECT Path FROM image WHERE bookid = " + bookid)
-	results = cursor.fetchall()
-	# alle folders worden in een lijst gezet
-	for folder in results:
-		folder_list.append(folder)
+timing_list = [2000, 5000,4000,5000]
+path_list = ['C:/Users/ewoud/Proofofconcept/Belevingsruimte_Bib_B9/Test/download.jpg', 'C:/Users/ewoud/Proofofconcept/Belevingsruimte_Bib_B9/Test/1.png', 'C:/Users/ewoud/Proofofconcept/Belevingsruimte_Bib_B9/Test/2.jpg', 'C:/Users/ewoud/Proofofconcept/Belevingsruimte_Bib_B9/Test/3.png']
 
-bookname = "test"
+
 
 
 
@@ -39,17 +31,15 @@ class gui:
 
 
 	def pic(self):
-
+		global path_list
 		self.pic_list = []
-		for name in glob.glob(r'Slideshow/*'):  # folder ingeven waarvan je een slideshow wilt afspelen met ster na / voor alle bestanden
+		for name in path_list:  # folder ingeven waarvan je een slideshow wilt afspelen met ster na / voor alle bestanden
 			val = name
 			self.pic_list.append(val)
 
 
-		if self.counter == len(self.pic_list) - 1:
-			self.counter = 0
-		else:
-			self.counter += 1
+		if self.counter != len(self.pic_list) - 1:
+			self.counter +=1
 
 		self.file = self.pic_list[self.counter]
 		self.load = Image.open(self.file)
@@ -62,11 +52,8 @@ class gui:
 		self.render = ImageTk.PhotoImage(self.load2)
 		self.img.config(image=self.render)
 		self.img.image = self.render
-		root.after(2000,self.pic)
-
-
-
-
+		for timing in timing_list:
+			root.after(timing, self.pic)
 root = tk.Tk()
-myprog = gui(root)
+myprog = gui(root, 'My Book') # specify the bookname in the constructor call.
 root.mainloop()
