@@ -33,8 +33,8 @@ def create_table(conn, create_table_sql):
 
 def main():
     database = r"/home/dyn/ps1/belevings_ruimte.db"
-    database = r"belevins_ruimte.db"
-    create_table("PRAGMA foreign_keys = ON;")
+    create_table(conn, "PRAGMA foreign_keys = ON;")
+
 
     sql_create_book_table = """ CREATE TABLE IF NOT EXISTS book (
                                         bookId integer PRIMARY KEY,
@@ -110,6 +110,6 @@ def main():
     else:
         print("Error! cannot create the database connection.")
 
-
+# uncommenten als de main() automatisch moet uitgevoerd worden bij het runnen van de code
 #if __name__ == '__main__':
 #    main()
