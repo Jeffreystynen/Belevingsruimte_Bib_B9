@@ -5,8 +5,8 @@ timing_list = [2000, 2000, 2000, 2000, 2000]
 path_list = ["", "/home/dyn/ps1/Belevingsruimte_Bib_B9/Test/1.png", "/home/dyn/ps1/Belevingsruimte_Bib_B9/Test/2.jpg",
              "/home/dyn/ps1/Belevingsruimte_Bib_B9/Test/3.png", "/home/dyn/ps1/Belevingsruimte_Bib_B9/Test/download.jpg"]
 
-
-class gui:
+# moet init() niet __init__() zijn? of is dit bewust weg gelaten?
+class gui: 
     def init(self, mainwin, bookname):
         self.counter = 0
         self.mainwin = mainwin
