@@ -18,7 +18,7 @@ def create_connection(db_file):
     return conn
 
 
-def create_table(conn, create_table_sql):
+def sql_command(conn, sql):
     """ create a table from the create_table_sql statement
     :param conn: Connection object
     :param create_table_sql: a CREATE TABLE statement
@@ -26,15 +26,13 @@ def create_table(conn, create_table_sql):
     """
     try:
         c = conn.cursor()
-        c.execute(create_table_sql)
+        c.execute(sql)
     except Error as e:
         print(e)
 
 
 def main():
     database = r"/home/dyn/ps1/belevings_ruimte.db"
-    create_table(conn, "PRAGMA foreign_keys = ON;")
-
 
     sql_create_book_table = """ CREATE TABLE IF NOT EXISTS book (
                                         bookId integer PRIMARY KEY,
@@ -99,13 +97,14 @@ def main():
 
     # create tables
     if conn is not None:
-        create_table(conn, sql_create_book_table)
-        create_table(conn, sql_create_light_table)
-        create_table(conn, sql_create_lightBook_table)
-        create_table(conn, sql_create_soundeffect_table)
-        create_table(conn, sql_create_soundeffectBook_table)
-        create_table(conn, sql_create_image_table)
-        create_table(conn, sql_create_imageBook_table)
+        sql_command(conn, "PRAGMA foreign_keys = ON;")
+        sql_command(conn, sql_create_book_table)
+        sql_command(conn, sql_create_light_table)
+        sql_command(conn, sql_create_lightBook_table)
+        sql_command(conn, sql_create_soundeffect_table)
+        sql_command(conn, sql_create_soundeffectBook_table)
+        sql_command(conn, sql_create_image_table)
+        sql_command(conn, sql_create_imageBook_table)
 
     else:
         print("Error! cannot create the database connection.")
