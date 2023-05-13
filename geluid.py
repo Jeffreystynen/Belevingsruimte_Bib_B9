@@ -1,6 +1,10 @@
 import pygame
+import subprocess
 
+# mogelijke oplossing? externe mediaplayer openen op de pi met python met subprocess.
 input_file = "/home/dyn/ps1/Belevingsruimte_Bib_B9/Test/music.mp3"
+process = subprocess.Popen(['vlc','-b',input_file], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, close_fds=True) # opent vlc in de achtergrond
+process.communicate()  # Wait for VLC to complete playing the audio (optional)
 
 pygame.init()
 pygame.mixer.init()
@@ -17,3 +21,7 @@ while True:
         break
 
 pygame.quit()
+
+
+
+
