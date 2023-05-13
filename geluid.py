@@ -1,6 +1,6 @@
 import pygame
 
-input_file = "/home/dyn/ps1/Belevingsruimte_Bib_B9/Test/music.wav"
+input_file = "/home/dyn/ps1/Belevingsruimte_Bib_B9/Test/music.mp3"
 
 pygame.init()
 pygame.mixer.init()
