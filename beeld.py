@@ -2,11 +2,11 @@ import tkinter as tk
 from PIL import Image, ImageTk
 
 timing_list = [2000, 2000, 2000, 2000, 2000]
-path_list = ["/home/dyn/ps1/Belevingsruimte_Bib_B9/Test/download.jpg", "/home/dyn/ps1/Belevingsruimte_Bib_B9/Test/1.png", "/home/dyn/ps1/Belevingsruimte_Bib_B9/Test/2.jpg",
-             "/home/dyn/ps1/Belevingsruimte_Bib_B9/Test/3.png"]
+path_list = ["", "/home/dyn/ps1/Belevingsruimte_Bib_B9/Test/1.png", "/home/dyn/ps1/Belevingsruimte_Bib_B9/Test/2.jpg",
+             "/home/dyn/ps1/Belevingsruimte_Bib_B9/Test/3.png", "/home/dyn/ps1/Belevingsruimte_Bib_B9/Test/download.jpg"]
 
-class gui:
-    def init(self, mainwin, bookname):
+class GUI():
+    def __init__(self, mainwin, bookname):
         self.counter = 0
         self.mainwin = mainwin
         self.mainwin.title(bookname)
@@ -41,7 +41,11 @@ class gui:
         self.img.image = self.render
         for timing in timing_list:
             root.after(timing, self.pic)
+            
+    def schedule_window_close(self):
+        total_duration = sum(timing_list)
+        self.mainwin.after(total_duration, self.mainwin.destroy)
 
 root = tk.Tk()
-myprog = gui()
+myprog = GUI(root, 'My Book')
 root.mainloop()
