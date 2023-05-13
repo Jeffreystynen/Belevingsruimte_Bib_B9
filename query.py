@@ -1,17 +1,36 @@
+import sqlite3
+from sqlite3 import Error
 import database
 
-conn = database.create_connection('/home/dyn/ps1/belevings_ruimte.db')
+db = "/home/dyn/ps1/Belevingsruimte_Bib_B9/belevings_ruimte.db"
+ # create a database connection
 
-def soundeffect():
+
+def soundeffect(bookId):
+    global db
+    conn = database.create_connection(db)
+    cursor = conn.cursor()
+
     soundeffectList = []
     soundeffectOrder = []
     soundeffectTiming = []
     soundeffectPath = []
 
-    rows = database.sql_command(conn, "SELECT * FROM soundeffect")
+    querie = """SELECT sb.orderSoundeffect, sb.soundeffectTiming, s.soundeffectFilePath 
+                FROM soundeffectbook sb 
+                JOIN soundeffect s ON sb.soundeffectId = s.soundeffectId 
+                WHERE sb.bookId = ? 
+                ORDER BY sb.orderSoundeffect ASC"""
+    values = (bookId,)
+
+    cursor.execute(querie, values)
+    rows = cursor.fetchall()
+
+    conn.commit()
+    conn.close()
 
     for row in rows:
-        soundeffectOrder.append(row[0]) # sql query moet 3 rows returnen row 1 = order, 2 = timing, 3 = path
+        soundeffectOrder.append(row[0])
         soundeffectTiming.append(row[1])
         soundeffectPath.append(row[2])
 
@@ -21,22 +40,49 @@ def soundeffect():
 
     return soundeffectList
 
-def audioBook():
+
+
+def audioBook(bookId):
+    global db
+    conn = database.create_connection(db)
+    cursor = conn.cursor()
     audioBookList = []
-    rows = database.sql_command(conn, "SELECT * FROM audioBook")
+    querie = """SELECT soundFilePath From book
+                where bookId = ?"""
+    values = (bookId,)
+
+    cursor.execute(querie, values)
+    rows = cursor.fetchall()
+
+    conn.commit()
+    conn.close()
 
     for row in rows:
         audioBookList.append(row)
 
     return audioBookList
 
-def light():
+def light(bookId):
+    global db
+    conn = database.create_connection(db)
+    cursor = conn.cursor()
     lightList = []
     lightOrder = []
     lightTiming = []
     lightPath = []
 
-    rows = database.sql_command(conn, "SELECT * FROM light")
+    querie = """SELECT lb.orderLight, lb.lightTiming, l.color 
+                FROM lightBook lb 
+                JOIN light l ON lb.soundeffectId = l.soundeffectId 
+                WHERE lb.bookId = ? 
+                ORDER BY lb.orderLight ASC"""
+    values = (bookId,)
+
+    cursor.execute(querie, values)
+    rows = cursor.fetchall()
+
+    conn.commit()
+    conn.close()
 
     for row in rows:
         lightOrder.append(row[0])
@@ -49,13 +95,26 @@ def light():
 
     return lightList
 
-def image():
+def image(bookId):
+    global db
+    conn = database.create_connection(db)
+    cursor = conn.cursor()
     imageList = []
     imageOrder = []
     imageTiming = []
     imagePath = []
 
-    rows = database.sql_command(conn, "SELECT * FROM image")
+    querie = """SELECT ib.orderImage, ib.imageTiming, i.imageFilePath 
+                FROM imageBook ib Join image i on i.imageId = ib.imageId 
+                where ib.bookId = ? 
+                order by ib.orderImage ASC"""
+    values = (bookId,)
+
+    cursor.execute(querie, values)
+    rows = cursor.fetchall()
+
+    conn.commit()
+    conn.close()
 
     for row in rows:
         imageOrder.append(row[0])
@@ -68,4 +127,4 @@ def image():
     
     return imageList
 
-conn.close()
+print(*soundeffect[1])
