@@ -17,6 +17,19 @@ def create_connection(db_file):
 
     return conn
 
+def create_table(conn, create_table_sql):
+    """ create a table from the create_table_sql statement
+    :param conn: Connection object
+    :param create_table_sql: a CREATE TABLE statement
+    :return:
+    """
+    try:
+        c = conn.cursor()
+        c.execute(create_table_sql)
+    except Error as e:
+        print(e)
+
+
 
 def main():
     database = "/home/dyn/ps1/Belevingsruimte_Bib_B9/belevings_ruimte.db"
@@ -31,7 +44,8 @@ def main():
     sql_create_light_table = """CREATE TABLE IF NOT EXISTS light (
                                     lightId integer PRIMARY KEY,
                                     name text NOT NULL,
-                                    color text NOT NULL
+                                    color text NOT NULL,
+                                    bright integer NOT NULL
                                 );"""
     
     sql_create_lightBook_table = """CREATE TABLE IF NOT EXISTS lightBook (
@@ -83,7 +97,7 @@ def main():
     sql_insert_book = """INSERT INTO book (bookId, title, audioFilePath, coverFilePath) VALUES (1,'Book Title 1', '/home/dyn/ps1/Belevingsruimte_Bib_B9/Test/music.mp3', '/path/to/cover1.jpg');"""
 
     # Light table
-    sql_insert_light = """INSERT INTO light (lightId, name, color) VALUES (1, 'Light 1', '(255,0,0)');"""
+    sql_insert_light = """INSERT INTO light (lightId, name, color, bright) VALUES (1, 'Light 1', '(255,0,0)', 1);"""
 
     # LightBook table
     sql_insert_lightbook = """INSERT INTO lightBook (bookId, lightId, lightTiming, orderLight) VALUES (1, 1, 10, 1);"""
@@ -109,25 +123,35 @@ def main():
 
     cursor = conn.cursor()
 
-    cursor.execute("PRAGMA foreign_keys = ON;")
-    cursor.execute(sql_create_book_table)
-    cursor.execute(sql_create_light_table)
-    cursor.execute(sql_create_lightBook_table)
-    cursor.execute(sql_create_soundeffect_table)
-    cursor.execute(sql_create_soundeffectBook_table)
-    cursor.execute(sql_create_image_table)
-    cursor.execute(sql_create_imageBook_table)
+    if conn is not None:
+        cursor.execute('''DROP TABLE IF EXISTS soundeffectBook''')
+        cursor.execute('''DROP TABLE IF EXISTS imageBook''')
+        cursor.execute('''DROP TABLE IF EXISTS lightBook''')
+        cursor.execute('''DROP TABLE IF EXISTS soundeffect''')
+        cursor.execute('''DROP TABLE IF EXISTS image''')
+        cursor.execute('''DROP TABLE IF EXISTS light''')
+        cursor.execute('''DROP TABLE IF EXISTS book''')
 
-    cursor.execute(sql_insert_image1)
-    cursor.execute(sql_insert_image2)
-    cursor.execute(sql_insert_light)
-    cursor.execute(sql_insert_book)
-    cursor.execute(sql_insert_imagebook1)
-    cursor.execute(sql_insert_imagebook2)
-    cursor.execute(sql_insert_soundeffect)
-    cursor.execute(sql_insert_soundeffectbook)
-    cursor.execute(sql_insert_lightbook)
-    conn.commit()
-    conn.close()
+        create_table(conn, sql_create_book_table)
+        create_table(conn, sql_create_light_table)
+        create_table(conn, sql_create_image_table)
+        create_table(conn, sql_create_soundeffect_table)
+        create_table(conn, sql_create_lightBook_table)
+        create_table(conn, sql_create_imageBook_table)
+        create_table(conn, sql_create_soundeffectBook_table)
+        cursor.execute(sql_insert_image1)
+        cursor.execute(sql_insert_image2)
+        cursor.execute(sql_insert_light)
+        cursor.execute(sql_insert_book)
+        cursor.execute(sql_insert_imagebook1)
+        cursor.execute(sql_insert_imagebook2)
+        cursor.execute(sql_insert_soundeffect)
+        cursor.execute(sql_insert_soundeffectbook)
+        cursor.execute(sql_insert_lightbook)
+        conn.commit()
+        conn.close()
+    else:
+        print("Error! cannot create the database connection.")
+    
 
 main()

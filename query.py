@@ -2,6 +2,7 @@ import sqlite3
 from sqlite3 import Error
 import database
 
+
 db = "/home/dyn/ps1/Belevingsruimte_Bib_B9/belevings_ruimte.db"
  # create a database connection
 
@@ -16,11 +17,11 @@ def soundeffect(bookId):
     soundeffectTiming = []
     soundeffectPath = []
 
-    querie = """SELECT sb.orderSoundeffect, sb.soundeffectTiming, s.soundeffectFilePath 
-                FROM soundeffectbook sb 
-                JOIN soundeffect s ON sb.soundeffectId = s.soundeffectId 
-                WHERE sb.bookId = ? 
-                ORDER BY sb.orderSoundeffect ASC"""
+    querie = """SELECT soundeffectbook.orderSoundeffect, soundeffectbook.soundeffectTiming, soundeffect.soundeffectFilePath 
+                FROM soundeffectbook 
+                JOIN soundeffect ON soundeffectbook.soundeffectId = soundeffect.soundeffectId 
+                WHERE soundeffectbook.bookId = ? 
+                ORDER BY soundeffectbook.orderSoundeffect ASC"""
     values = (bookId,)
 
     cursor.execute(querie, values)
@@ -47,7 +48,7 @@ def audioBook(bookId):
     conn = database.create_connection(db)
     cursor = conn.cursor()
     audioBookList = []
-    querie = """SELECT soundFilePath From book
+    querie = """SELECT audioFilePath From book
                 where bookId = ?"""
     values = (bookId,)
 
@@ -70,12 +71,13 @@ def light(bookId):
     lightOrder = []
     lightTiming = []
     lightPath = []
+    lightBright = []
 
-    querie = """SELECT lb.orderLight, lb.lightTiming, l.color 
-                FROM lightBook lb 
-                JOIN light l ON lb.soundeffectId = l.soundeffectId 
-                WHERE lb.bookId = ? 
-                ORDER BY lb.orderLight ASC"""
+    querie = """SELECT lightBook.orderLight, lightBook.lightTiming, light.color, light.bright  
+                FROM lightBook
+                JOIN light ON lightBook.lightId = light.lightId 
+                WHERE lightBook.bookId = ? 
+                ORDER BY lightBook.orderLight ASC"""
     values = (bookId,)
 
     cursor.execute(querie, values)
@@ -88,10 +90,13 @@ def light(bookId):
         lightOrder.append(row[0])
         lightTiming.append(row[1])
         lightPath.append(row[2])
+        lightBright.append(row[3])
     
     lightList.append(lightOrder)
     lightList.append(lightTiming)
     lightList.append(lightPath)
+    lightList.append(lightBright)
+
 
     return lightList
 
@@ -104,27 +109,28 @@ def image(bookId):
     imageTiming = []
     imagePath = []
 
-    querie = """SELECT ib.orderImage, ib.imageTiming, i.imageFilePath 
-                FROM imageBook ib Join image i on i.imageId = ib.imageId 
-                where ib.bookId = ? 
-                order by ib.orderImage ASC"""
+    querie = """SELECT imageBook.orderImage, imageBook.imageTiming, image.imageFilePath 
+            FROM imageBook Join image on image.imageId = imageBook.imageId 
+            where imageBook.bookId = ?
+            order by imageBook.orderImage ASC"""
     values = (bookId,)
+
+
+
 
     cursor.execute(querie, values)
     rows = cursor.fetchall()
-
-    conn.commit()
-    conn.close()
+    
 
     for row in rows:
         imageOrder.append(row[0])
         imageTiming.append(row[1])
         imagePath.append(row[2])
-    
+    conn.commit()    
+    conn.close()
+
     imageList.append(imageOrder)
     imageList.append(imageTiming)
     imageList.append(imagePath)
     
     return imageList
-
-print(*soundeffect[1])

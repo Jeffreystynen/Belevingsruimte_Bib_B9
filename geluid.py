@@ -1,16 +1,18 @@
 import subprocess
 import time
 
-def sound(list):
-    if list.count() > 1:
-        path = list[0]
+def sound(lijst):
+    if len(lijst) < 1:
+        print("lijst is leeg")
+    elif len(lijst) == 1:
+        path = lijst[0]
     else:
-        order = list[0]
-        timing = list[1]
-        path = list[2]
+        order = lijst[0]
+        timing = lijst[1]
+        path = lijst[2]
 
 
-    for i in range(path.count()):
+    for i in range(len(path)-1):
         input_file = path[i]
         time.sleep(timing[i])
         # start the vlc media player and play the audio file
