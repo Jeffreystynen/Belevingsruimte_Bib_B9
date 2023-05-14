@@ -93,50 +93,104 @@ def main():
                                             FOREIGN KEY (imageId)
                                             REFERENCES image (imageId)
                                         );"""
-    # Book table
-    sql_insert_book1 = """INSERT INTO book (bookId, title, audioFilePath, coverFilePath) VALUES (1,'Strandfeest', '/home/dyn/ps1/Belevingsruimte_Bib_B9/sources/audiobook/strandfeest.mp3', 'static/images/strandfeest.jpg');"""
-    sql_insert_book2 = """INSERT INTO book (bookId, title, audioFilePath, coverFilePath) VALUES (2,'Pluk', '/home/dyn/ps1/Belevingsruimte_Bib_B9/sources/audiobook', 'static/images/pluk.jpg');"""
-    sql_insert_book3 = """INSERT INTO book (bookId, title, audioFilePath, coverFilePath) VALUES (3,'Gegijzeld', '/home/dyn/ps1/Belevingsruimte_Bib_B9/sources/audiobook', 'static/images/gegijzeld.jpg');"""
-
-
+    insert_query_list = []
     # Light table
-    sql_insert_light1 = """INSERT INTO light (lightId, name, color, bright) VALUES (1, 'rood', '255,0,0', 1);"""
-    sql_insert_light2 = """INSERT INTO light (lightId, name, color, bright) VALUES (2, 'lichtrood', '255,102,102', 1);"""
-    sql_insert_light3 = """INSERT INTO light (lightId, name, color, bright) VALUES (3, 'blauw', '0,0,255', 0.5);"""
-    sql_insert_light4 = """INSERT INTO light (lightId, name, color, bright) VALUES (4, 'licthblauw', '173,216,230', 1);"""
-    sql_insert_light5 = """INSERT INTO light (lightId, name, color, bright) VALUES (5, 'groen', '0,255,0', 0.5);"""
+    sql_insert_light0 = """INSERT INTO light (lightId, name, color, bright) VALUES (1, 'rood', '255,0,0', 1);"""
+    sql_insert_light1 = """INSERT INTO light (lightId, name, color, bright) VALUES (2, 'lichtrood', '255,102,102', 1);"""
+    sql_insert_light2 = """INSERT INTO light (lightId, name, color, bright) VALUES (3, 'blauw', '0,0,255', 0.5);"""
+    sql_insert_light3 = """INSERT INTO light (lightId, name, color, bright) VALUES (4, 'licthblauw', '173,216,230', 1);"""
+    sql_insert_light4 = """INSERT INTO light (lightId, name, color, bright) VALUES (5, 'groen', '0,255,0', 0.5);"""
     sql_insert_light5 = """INSERT INTO light (lightId, name, color, bright) VALUES (6, 'licthgroen', '144,238,144', 0.5);"""
     sql_insert_light6 = """INSERT INTO light (lightId, name, color, bright) VALUES (7, 'strandgeel', '248,223,175', 0.5);"""
+    insert_query_list.append(sql_insert_light0)
+    insert_query_list.append(sql_insert_light1)
+    insert_query_list.append(sql_insert_light2)
+    insert_query_list.append(sql_insert_light3)
+    insert_query_list.append(sql_insert_light4)
+    insert_query_list.append(sql_insert_light5)
+    insert_query_list.append(sql_insert_light6)
 
+    # Image table
+    sql_insert_image0 = """INSERT INTO image (imageId, name, imageFilePath) VALUES (1, 'phone dropped', '/home/dyn/ps1/Belevingsruimte_Bib_B9/sources/images/phone-dropped.jpg');"""
+    sql_insert_image1 = """INSERT INTO image (imageId, name, imageFilePath) VALUES (2, 'looking at phone', '/home/dyn/ps1/Belevingsruimte_Bib_B9/sources/images/lookingphone.png');"""
+    sql_insert_image2 = """INSERT INTO image (imageId, name, imageFilePath) VALUES (3, 'checkmessages', '/home/dyn/ps1/Belevingsruimte_Bib_B9/sources/images/checkmessages.jpg');"""
+    sql_insert_image3 = """INSERT INTO image (imageId, name, imageFilePath) VALUES (4, 'frusrtated', '/home/dyn/ps1/Belevingsruimte_Bib_B9/sources/images/frusrtated.jpg');"""
+    sql_insert_image4 = """INSERT INTO image (imageId, name, imageFilePath) VALUES (5, 'plukzelf', '/home/dyn/ps1/Belevingsruimte_Bib_B9/sources/images/plukzelf.jpg');"""
+    sql_insert_image5 = """INSERT INTO image (imageId, name, imageFilePath) VALUES (6, 'plukwagen', '/home/dyn/ps1/Belevingsruimte_Bib_B9/sources/images/rodewage.webp');"""
+    sql_insert_image6 = """INSERT INTO image (imageId, name, imageFilePath) VALUES (7, 'plukhuis', '/home/dyn/ps1/Belevingsruimte_Bib_B9/sources/images/huis.jpg');"""
+    insert_query_list.append(sql_insert_image0)
+    insert_query_list.append(sql_insert_image1)
+    insert_query_list.append(sql_insert_image2)
+    insert_query_list.append(sql_insert_image3)
+    insert_query_list.append(sql_insert_image4)
+    insert_query_list.append(sql_insert_image5)
+    insert_query_list.append(sql_insert_image6)
 
-
-    # LightBook table
-    sql_insert_lightbook1 = """INSERT INTO lightBook (bookId, lightId, lightTiming, orderLight) VALUES (1, 7, 5, 1);"""
-    sql_insert_lightbook2 = """INSERT INTO lightBook (bookId, lightId, lightTiming, orderLight) VALUES (1, 1, 5, 2);"""
-    sql_insert_lightbook3 = """INSERT INTO lightBook (bookId, lightId, lightTiming, orderLight) VALUES (1, 7, 5, 3);"""
 
 
 
     # SoundEffect table
-    sql_insert_soundeffect1 = """INSERT INTO soundeffect (soundeffectId, name, soundeffectFilePath) VALUES (1, 'spanning', '/home/dyn/ps1/Belevingsruimte_Bib_B9/sources/soundeffects/spanning.mp3');"""
-    sql_insert_soundeffect2 = """INSERT INTO soundeffect (soundeffectId, name, soundeffectFilePath) VALUES (2, 'mysterie', '/home/dyn/ps1/Belevingsruimte_Bib_B9/sources/soundeffects/mysterie.mp3');"""
+    sql_insert_soundeffect0 = """INSERT INTO soundeffect (soundeffectId, name, soundeffectFilePath) VALUES (1, 'spanning', '/home/dyn/ps1/Belevingsruimte_Bib_B9/sources/soundeffects/spanning.mp3');"""
+    sql_insert_soundeffect1 = """INSERT INTO soundeffect (soundeffectId, name, soundeffectFilePath) VALUES (2, 'mysterie', '/home/dyn/ps1/Belevingsruimte_Bib_B9/sources/soundeffects/mysterie.mp3');"""
+    sql_insert_soundeffect2 = """INSERT INTO soundeffect (soundeffectId, name, soundeffectFilePath) VALUES (3, 'kinder', '/home/dyn/ps1/Belevingsruimte_Bib_B9/sources/soundeffects/kindermuziek.mp3');"""
+    insert_query_list.append(sql_insert_soundeffect0)
+    insert_query_list.append(sql_insert_soundeffect1)
+    insert_query_list.append(sql_insert_soundeffect2)
+
+
+    # Book table
+    sql_insert_book0 = """INSERT INTO book (bookId, title, audioFilePath, coverFilePath) VALUES (1,'Strandfeest', '/home/dyn/ps1/Belevingsruimte_Bib_B9/sources/audiobook/strandfeest.mp3', 'static/images/strandfeest.jpg');"""
+    sql_insert_book1 = """INSERT INTO book (bookId, title, audioFilePath, coverFilePath) VALUES (2,'Pluk', '/home/dyn/ps1/Belevingsruimte_Bib_B9/sources/audiobook', 'static/images/pluk.jpg');"""
+    insert_query_list.append(sql_insert_book0)
+    insert_query_list.append(sql_insert_book1)
+
+
+    # LightBook table
+    sql_insert_lightbook0 = """INSERT INTO lightBook (bookId, lightId, lightTiming, orderLight) VALUES (1, 7, 5, 1);"""
+    sql_insert_lightbook1 = """INSERT INTO lightBook (bookId, lightId, lightTiming, orderLight) VALUES (1, 1, 5, 2);"""
+    sql_insert_lightbook2 = """INSERT INTO lightBook (bookId, lightId, lightTiming, orderLight) VALUES (1, 7, 5, 3);"""
+    sql_insert_lightbook3 = """INSERT INTO lightBook (bookId, lightId, lightTiming, orderLight) VALUES (1, 1, 5, 3);"""
+    sql_insert_lightbook4 = """INSERT INTO lightBook (bookId, lightId, lightTiming, orderLight) VALUES (1, 2, 5, 3);"""
+    sql_insert_lightbook5 = """INSERT INTO lightBook (bookId, lightId, lightTiming, orderLight) VALUES (1, 4, 5, 3);"""
+    sql_insert_lightbook6 = """INSERT INTO lightBook (bookId, lightId, lightTiming, orderLight) VALUES (1, 3, 5, 3);"""
+
+    insert_query_list.append(sql_insert_lightbook0)
+    insert_query_list.append(sql_insert_lightbook1)
+    insert_query_list.append(sql_insert_lightbook2)
+    insert_query_list.append(sql_insert_lightbook3)
+    insert_query_list.append(sql_insert_lightbook4)
+    insert_query_list.append(sql_insert_lightbook5)
+    insert_query_list.append(sql_insert_lightbook6)
+    
 
     # SoundEffectBook table
-    sql_insert_soundeffectbook1 = """INSERT INTO soundeffectBook (bookId, soundeffectId, soundeffectTiming, orderSoundeffect) VALUES (1, 2, 1, 1);"""
-    sql_insert_soundeffectbook2 = """INSERT INTO soundeffectBook (bookId, soundeffectId, soundeffectTiming, orderSoundeffect) VALUES (1, 1, 1, 2);"""
+    sql_insert_soundeffectbook0 = """INSERT INTO soundeffectBook (bookId, soundeffectId, soundeffectTiming, orderSoundeffect) VALUES (1, 2, 1, 1);"""
+    sql_insert_soundeffectbook1 = """INSERT INTO soundeffectBook (bookId, soundeffectId, soundeffectTiming, orderSoundeffect) VALUES (1, 1, 1, 2);"""
+    sql_insert_soundeffectbook2 = """INSERT INTO soundeffectBook (bookId, soundeffectId, soundeffectTiming, orderSoundeffect) VALUES (2, 3, 1, 1);"""
+    insert_query_list.append(sql_insert_soundeffectbook0)
+    insert_query_list.append(sql_insert_soundeffectbook1)
+    insert_query_list.append(sql_insert_soundeffectbook2)
 
 
-    # Image table
-    sql_insert_image1 = """INSERT INTO image (imageId, name, imageFilePath) VALUES (1, 'phone dropped', '/home/dyn/ps1/Belevingsruimte_Bib_B9/sources/images/phone-dropped.jpg');"""
-    sql_insert_image2 = """INSERT INTO image (imageId, name, imageFilePath) VALUES (2, 'looking at phone', '/home/dyn/ps1/Belevingsruimte_Bib_B9/sources/images/lookingphone.png');"""
-    sql_insert_image3 = """INSERT INTO image (imageId, name, imageFilePath) VALUES (3, 'checkmessages', '/home/dyn/ps1/Belevingsruimte_Bib_B9/sources/images/checkmessages.jpg');"""
-    sql_insert_image4 = """INSERT INTO image (imageId, name, imageFilePath) VALUES (4, 'frusrtated', '/home/dyn/ps1/Belevingsruimte_Bib_B9/sources/images/frusrtated.jpg');"""
 
+    
     # ImageBook table
-    sql_insert_imagebook1 = """INSERT INTO imageBook (bookId, imageId, imageTiming, orderImage) VALUES (1, 1, 5000, 1);"""
-    sql_insert_imagebook2 = """INSERT INTO imageBook (bookId, imageId, imageTiming, orderImage) VALUES (1, 2, 4000, 2);"""
-    sql_insert_imagebook3 = """INSERT INTO imageBook (bookId, imageId, imageTiming, orderImage) VALUES (1, 3, 4000, 3);"""
-    sql_insert_imagebook4 = """INSERT INTO imageBook (bookId, imageId, imageTiming, orderImage) VALUES (1, 4, 8000, 4);"""
+    sql_insert_imagebook0 = """INSERT INTO imageBook (bookId, imageId, imageTiming, orderImage) VALUES (1, 1, 5000, 1);"""
+    sql_insert_imagebook1 = """INSERT INTO imageBook (bookId, imageId, imageTiming, orderImage) VALUES (1, 2, 4000, 2);"""
+    sql_insert_imagebook2 = """INSERT INTO imageBook (bookId, imageId, imageTiming, orderImage) VALUES (1, 3, 4000, 3);"""
+    sql_insert_imagebook3 = """INSERT INTO imageBook (bookId, imageId, imageTiming, orderImage) VALUES (1, 4, 8000, 4);"""
+    sql_insert_imagebook4 = """INSERT INTO imageBook (bookId, imageId, imageTiming, orderImage) VALUES (2, 5, 8000, 1);"""
+    sql_insert_imagebook5 = """INSERT INTO imageBook (bookId, imageId, imageTiming, orderImage) VALUES (2, 6, 8000, 2);"""
+    sql_insert_imagebook6 = """INSERT INTO imageBook (bookId, imageId, imageTiming, orderImage) VALUES (2, 7, 8000, 3);"""
+
+    insert_query_list.append(sql_insert_imagebook0)
+    insert_query_list.append(sql_insert_imagebook1)
+    insert_query_list.append(sql_insert_imagebook2)
+    insert_query_list.append(sql_insert_imagebook3)
+    insert_query_list.append(sql_insert_imagebook4)
+    insert_query_list.append(sql_insert_imagebook5)
+    insert_query_list.append(sql_insert_imagebook6)
+
 
 
 
@@ -163,31 +217,9 @@ def main():
         create_table(conn, sql_create_lightBook_table)
         create_table(conn, sql_create_imageBook_table)
         create_table(conn, sql_create_soundeffectBook_table)
-        cursor.execute(sql_insert_image1)
-        cursor.execute(sql_insert_image2)
-        cursor.execute(sql_insert_image3)
-        cursor.execute(sql_insert_image4)
-        cursor.execute(sql_insert_light1)
-        cursor.execute(sql_insert_light2)
-        cursor.execute(sql_insert_light3)
-        cursor.execute(sql_insert_light4)
-        cursor.execute(sql_insert_light5)
-        cursor.execute(sql_insert_light6)
+        for insert in insert_query_list:
+            cursor.execute(insert)
 
-        cursor.execute(sql_insert_book1)
-        cursor.execute(sql_insert_book2)
-        cursor.execute(sql_insert_book3)
-        cursor.execute(sql_insert_imagebook1)
-        cursor.execute(sql_insert_imagebook2)
-        cursor.execute(sql_insert_imagebook3)
-        cursor.execute(sql_insert_imagebook4)
-        cursor.execute(sql_insert_soundeffect1)
-        cursor.execute(sql_insert_soundeffect2)
-        cursor.execute(sql_insert_soundeffectbook1)
-        cursor.execute(sql_insert_soundeffectbook2)
-        cursor.execute(sql_insert_lightbook1)
-        cursor.execute(sql_insert_lightbook2)
-        cursor.execute(sql_insert_lightbook3)
 
 
         conn.commit()
