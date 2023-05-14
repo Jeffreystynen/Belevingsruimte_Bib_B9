@@ -4,6 +4,15 @@ import threading
 import verlichting
 import query
 import time
+import psutil
+
+def kill_processes(process_name):
+    for proc in psutil.process_iter():
+        try:
+            if proc.name() == process_name:
+                proc.kill()
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            pass
 
 audiobooklist = []
 soundefectlist = []
@@ -31,4 +40,9 @@ def start():
     audiobook.start()
     soundeffects.start()
     images.start()
-    
+
+
+def done():
+    kill_processes('th')
+    kill_processes('tk')
+    kill_processes('vlc')

@@ -1,15 +1,16 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 
+
 def window(lijst):
 
     order = lijst[0]
     timing_list = lijst[1]
-    path_list = [""]
-    path_list.append(lijst[2])
+    path_list = lijst[2]
     
                 
     class GUI():
+
         def __init__(self, mainwin, bookname):
             self.counter = 0
             self.mainwin = mainwin
@@ -31,6 +32,8 @@ def window(lijst):
 
             if self.counter != len(self.pic_list) - 1:
                 self.counter += 1
+            else:
+                self.mainwin.destroy()  # close the window when slideshow is finished
 
             self.file = self.pic_list[self.counter]
             self.load = Image.open(self.file)
@@ -44,11 +47,8 @@ def window(lijst):
             self.img.image = self.render
             for timing in timing_list:
                 root.after(timing, self.pic)
-                
-        def schedule_window_close(self):
-            total_duration = sum(timing_list)
-            self.mainwin.after(total_duration, self.mainwin.destroy)
 
+            
     root = tk.Tk()
     myprog = GUI(root, 'My Book')
     root.mainloop()

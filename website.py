@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect
 import query
 import main
 
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -12,6 +13,7 @@ def index():
 
     # Pass the list of lists to the template
     templateData = {'list_of_books': list_of_books}
+    main.done()
 
     return render_template('boekenkiezen.html', **templateData)
 
