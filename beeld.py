@@ -5,7 +5,8 @@ def window(lijst):
 
     order = lijst[0]
     timing_list = lijst[1]
-    path_list = lijst[2]
+    path_list = [""]
+    path_list.append(lijst[2])
     
                 
     class GUI():

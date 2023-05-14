@@ -6,6 +6,32 @@ import database
 db = "/home/dyn/ps1/Belevingsruimte_Bib_B9/belevings_ruimte.db"
  # create a database connection
 
+def books():
+    global db
+    conn = database.create_connection(db)
+    cursor = conn.cursor()
+
+    book = []
+    
+
+    querie = """SELECT bookId, title, coverFilePath 
+                FROM book 
+                ORDER BY bookId ASC"""
+
+    cursor.execute(querie)
+    rows = cursor.fetchall()
+
+    conn.commit()
+    conn.close()
+
+    for row in rows:
+        bookseperate = []
+        bookseperate.append(row[0])
+        bookseperate.append(row[1])
+        bookseperate.append(row[2])
+        book.append(bookseperate)
+
+    return book
 
 def soundeffect(bookId):
     global db
@@ -39,6 +65,7 @@ def soundeffect(bookId):
     soundeffectList.append(soundeffectTiming)
     soundeffectList.append(soundeffectPath)
 
+    
     return soundeffectList
 
 

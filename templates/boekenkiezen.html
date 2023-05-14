@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+   <head>
+      <title>{{ title }}</title>
+	<link rel="stylesheet" type="text/css" href="static/style.css">
+
+   </head>
+   <body>
+      <h1>Kies een boek</h1>
+
+        {% for book in list_of_books %}
+            <p>{{book[1]}}</p>
+            <a href="/playpause?bookId={{book[0]}}&title={{book[1]}}&img_src={{book[2]}}"><img src="{{ book[2] }}"></a>
+
+
+        {% endfor %}
+
+   </body>
+</html>
